@@ -161,7 +161,7 @@ public class MainActivity extends Activity {
         LinearLayout c=card();entryInside(c,null,"قلم، اندازهٔ متن و حالت شب","type");buttonEffect(c);c.setOnClickListener(v->readerOptions());
         LinearLayout info=card();entryInside(info,null,"دربارهٔ برنامه و منابع","book");buttonEffect(info);info.setOnClickListener(v->navigate("about"));
         LinearLayout bio=card();entryInside(bio,null,"دربارهٔ مؤلف","spark");buttonEffect(bio);bio.setOnClickListener(v->navigate("author"));
-        gap(body,20);TextView detail=text("انیس الصادقین • نسخهٔ بازطراحی‌شده\n۱.۲ — پیش‌نمایش\n\nمحتوای آفلاین برگرفته از نسخهٔ ۳ برنامهٔ اصلی\nسید حسین یعقوبی قائنی · سایت صادقین\n\nاین نسخه، بازطراحی مستقل برای استفادهٔ شخصی است.",13,muted,false);detail.setGravity(Gravity.CENTER);detail.setLineSpacing(dp(4),1.1f);add(body,detail,-1,-2);
+        gap(body,20);TextView detail=text("انیس الصادقین • نسخهٔ بازطراحی‌شده\n۱.۲ — پیش‌نمایش\n\nمحتوای آفلاین برگرفته از نسخهٔ ۳ برنامهٔ اصلی\nسید حسین یعقوبی قائنی · سایت صادقین\n\nطراحی و توسعهٔ مستقل برنامه برای دسترسی آسان به دعاها و اذکار.",13,muted,false);detail.setGravity(Gravity.CENTER);detail.setLineSpacing(dp(4),1.1f);add(body,detail,-1,-2);
     }
     void showDocument(String title,String html){ScrollView sc=new ScrollView(this);TextView t=text("",18,ink,false);t.setPadding(dp(24),dp(12),dp(24),dp(12));t.setText(Html.fromHtml(styled(html)));t.setTextIsSelectable(true);sc.addView(t);new AlertDialog.Builder(this,dark?android.app.AlertDialog.THEME_DEVICE_DEFAULT_DARK:android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).setTitle(title).setView(sc).setPositiveButton("بستن",null).show();}
     void goBack(){hideKeyboard();if(screen.equals("author")||screen.equals("about")){navigate("settings");}else if(screen.equals("reader")){screen=returnScreen;render();}else if(screen.equals("library")&&section!=-1){section=book.byId.get(section).parent;render();}else if(!screen.equals("home")){navigate("home");}else super.onBackPressed();}
@@ -236,11 +236,11 @@ public class MainActivity extends Activity {
         LinearLayout.LayoutParams iconLayout=new LinearLayout.LayoutParams(dp(82),dp(82));iconLayout.gravity=Gravity.CENTER;intro.addView(logo,iconLayout);gap(intro,12);
         TextView name=text("انیس الصادقین",25,ink,true);name.setGravity(Gravity.CENTER);add(intro,name,-1,-2);
         TextView version=text("نسخهٔ بازطراحی‌شده · ۱.۲",13,muted,false);version.setGravity(Gravity.CENTER);add(intro,version,-1,-2);
-        label("دربارهٔ این نسخه");
-        TextView description=text("رابط این برنامه به‌صورت مستقل بازطراحی شده است تا مطالعهٔ کتاب، جست‌وجوی دعاها و دسترسی به تصاویر مؤلف آسان‌تر شود.",16,ink,false);description.setLineSpacing(dp(4),1.1f);add(body,description,-1,-2);gap(body,20);
+        label("طراحی و توسعهٔ برنامه");
+        TextView description=text("این برنامه با طراحی و توسعهٔ مستقل رابط کاربری، برای مطالعهٔ آفلاین کتاب انیس الصادقین و دسترسی آسان به دعاها و اذکار فراهم شده است. جست‌وجوی متن، نشانک‌گذاری و تنظیمات مطالعه، همراه شما در خواندن کتاب هستند.",16,ink,false);description.setLineSpacing(dp(4),1.1f);add(body,description,-1,-2);gap(body,20);
         LinearLayout source=card();add(source,text("برنامهٔ مبنا",13,green,true),-1,-2);gap(source,6);
         add(source,text("انیس الصادقین، نسخهٔ ۳\nتهیه‌شده برای سایت صادقین",17,ink,true),-1,-2);gap(source,8);
-        TextView attribution=text("محتوای کتاب و زندگی‌نامه از برنامهٔ اصلی استخراج شده‌اند. این بازطراحی به‌عنوان نسخهٔ رسمی سایت صادقین معرفی نمی‌شود.",14,muted,false);attribution.setLineSpacing(dp(3),1.1f);add(source,attribution,-1,-2);
+        TextView attribution=text("منبع متن کتاب و زندگی‌نامه، نسخهٔ ۳ برنامهٔ انیس الصادقین است. طراحی و توسعهٔ رابط این نسخه به‌صورت مستقل انجام شده و این برنامه، نسخهٔ رسمی سایت صادقین نیست.",14,muted,false);attribution.setLineSpacing(dp(3),1.1f);add(source,attribution,-1,-2);
         label("کتاب و تصاویر");
         TextView rights=text("مؤلف کتاب: سید حسین یعقوبی قائنی\nحقوق متن کتاب، تصاویر و سایر محتوای اصلی متعلق به صاحبان آن‌هاست. بازطراحی رابط به معنی انتقال مالکیت محتوای اصلی نیست.",15,ink,false);rights.setLineSpacing(dp(5),1.1f);add(body,rights,-1,-2);gap(body,16);
         TextView notice=text("مشاهدهٔ معرفی و اطلاعیهٔ حقوق نسخهٔ اصلی  ←",14,green,true);notice.setMinHeight(dp(52));buttonEffect(notice);notice.setOnClickListener(v->showDocument("معرفی نسخهٔ اصلی",book.about));add(body,notice,-1,-2);
